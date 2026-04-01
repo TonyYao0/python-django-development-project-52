@@ -1,0 +1,40 @@
+{% load django_bootstrap5 %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="ru" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <title>{% translate "Менеджер задач" %}</title>
+    {% bootstrap_css %}
+</head>
+<body class="h-100">
+    <div class="d-flex flex-nowrap min-vh-100">
+        <!-- Sidebar (дизайн из Bootstrap Examples) -->
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <span class="fs-4">{% translate "Менеджер задач" %}</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">{% translate "Пользователи" %}</a>
+                </li>
+            </ul>
+            <hr>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">{% translate "Вход" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">{% translate "Регистрация" %}</a>
+                </li>
+            </ul>
+        </div>
+
+        <main class="container-fluid p-5 bg-light overflow-auto">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    {% bootstrap_javascript %}
+</body>
+</html>
