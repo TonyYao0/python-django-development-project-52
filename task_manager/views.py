@@ -1,5 +1,20 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.views.generic import TemplateView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
-def index(request):
-    return render(request, 'index.html')
+class IndexView(TemplateView):
+    template_name = 'index.html'
+
+class UserLoginView(SuccessMessageMixin, LoginView):
+    template_name = 'login.html'
+    success_message = _('Вы залогинены')
+
+class UserLogoutView(LogoutView):
+    next_page = reverse_lazy('index')
+
+    def dispatch(self, request, *args, **kwargs):
+        messages.info(request, _('Вы разлогинены'))
+        return super().dispatch(request, *args, **kwargs)

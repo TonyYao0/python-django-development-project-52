@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
+    'users',
     'task_manager',
 ]
 
@@ -144,3 +145,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Перенаправление после входа на главную страницу
+LOGIN_REDIRECT_URL = 'index'
+
+# Перенаправление, если пользователь не авторизован и пытается зайти на защищенную страницу
+LOGIN_URL = 'login'

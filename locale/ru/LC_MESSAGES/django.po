@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-01 05:49+0000\n"
+"POT-Creation-Date: 2026-04-04 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/settings.py:60
+#: task_manager/settings.py:61
 msgid "Russian"
 msgstr "Русский"
 
-#: task_manager/settings.py:61
+#: task_manager/settings.py:62
 msgid "English"
 msgstr "Английский"
 
@@ -33,15 +33,15 @@ msgstr "Английский"
 msgid "Менеджер задач"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/base.html:20
+#: task_manager/templates/base.html:20 users/templates/users/index.html:5
 msgid "Пользователи"
 msgstr "Пользователи"
 
-#: task_manager/templates/base.html:26
+#: task_manager/templates/base.html:26 users/templates/users/login.html:6
 msgid "Вход"
 msgstr "Вход"
 
-#: task_manager/templates/base.html:29
+#: task_manager/templates/base.html:29 users/templates/users/create.html:6
 msgid "Регистрация"
 msgstr "Регистрация"
 
@@ -56,3 +56,91 @@ msgstr ""
 #: task_manager/templates/index.html:12
 msgid "Узнать больше"
 msgstr ""
+
+#: task_manager/views.py:13
+msgid "Вы залогинены"
+msgstr ""
+
+#: task_manager/views.py:19
+msgid "Вы разлогинены"
+msgstr ""
+
+#: users/forms.py:7
+msgid "Имя"
+msgstr ""
+
+#: users/forms.py:8
+msgid "Фамилия"
+msgstr ""
+
+#: users/forms.py:13 users/templates/users/index.html:10
+#, fuzzy
+#| msgid "Пользователи"
+msgid "Имя пользователя"
+msgstr "Пользователи"
+
+#: users/templates/users/create.html:10
+#, fuzzy
+#| msgid "Регистрация"
+msgid "Зарегистрировать"
+msgstr "Регистрация"
+
+#: users/templates/users/delete.html:6
+#, fuzzy
+#| msgid "Пользователи"
+msgid "Удаление пользователя"
+msgstr "Пользователи"
+
+#: users/templates/users/delete.html:7
+msgid "Вы уверены, что хотите удалить"
+msgstr ""
+
+#: users/templates/users/delete.html:10
+msgid "Да, удалить"
+msgstr ""
+
+#: users/templates/users/index.html:11
+msgid "Полное имя"
+msgstr ""
+
+#: users/templates/users/index.html:12
+msgid "Дата создания"
+msgstr ""
+
+#: users/templates/users/index.html:24 users/templates/users/update.html:10
+msgid "Изменить"
+msgstr ""
+
+#: users/templates/users/index.html:26
+msgid "Удалить"
+msgstr ""
+
+#: users/templates/users/login.html:10
+msgid "Войти"
+msgstr ""
+
+#: users/templates/users/update.html:6
+#, fuzzy
+#| msgid "Пользователи"
+msgid "Изменение пользователя"
+msgstr "Пользователи"
+
+#: users/views.py:22
+msgid "Пользователь успешно зарегистрирован"
+msgstr ""
+
+#: users/views.py:29
+#, fuzzy
+#| msgid "Пользователи"
+msgid "Пользователь успешно изменен"
+msgstr "Пользователи"
+
+#: users/views.py:35
+msgid "У вас нет прав для изменения другого пользователя."
+msgstr ""
+
+#: users/views.py:42
+#, fuzzy
+#| msgid "Пользователи"
+msgid "Пользователь успешно удален"
+msgstr "Пользователи"
