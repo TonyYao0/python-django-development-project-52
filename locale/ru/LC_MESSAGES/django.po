@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-04 15:43+0000\n"
+"POT-Creation-Date: 2026-04-17 13:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,69 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: labels/templates/labels/create.html:6 labels/templates/labels/index.html:6
+msgid "Создать метку"
+msgstr ""
+
+#: labels/templates/labels/create.html:10
+msgid "Создать"
+msgstr ""
+
+#: labels/templates/labels/delete.html:6
+#, fuzzy
+#| msgid "Пользователи"
+msgid "Удаление метки"
+msgstr "Пользователи"
+
+#: labels/templates/labels/delete.html:7 users/templates/users/delete.html:7
+msgid "Вы уверены, что хотите удалить"
+msgstr ""
+
+#: labels/templates/labels/delete.html:10 users/templates/users/delete.html:10
+msgid "Да, удалить"
+msgstr ""
+
+#: labels/templates/labels/index.html:5 task_manager/templates/base.html:27
+msgid "Метки"
+msgstr ""
+
+#: labels/templates/labels/index.html:12 users/forms.py:7
+msgid "Имя"
+msgstr ""
+
+#: labels/templates/labels/index.html:13 users/templates/users/index.html:12
+msgid "Дата создания"
+msgstr ""
+
+#: labels/templates/labels/update.html:6
+#, fuzzy
+#| msgid "Пользователи"
+msgid "Изменение метки"
+msgstr "Пользователи"
+
+#: labels/templates/labels/update.html:10 users/templates/users/index.html:24
+#: users/templates/users/update.html:10
+msgid "Изменить"
+msgstr ""
+
+#: labels/views.py:19
+#, fuzzy
+#| msgid "Пользователи"
+msgid "Метка успешно создана"
+msgstr "Пользователи"
+
+#: labels/views.py:27
+#, fuzzy
+#| msgid "Пользователи"
+msgid "Метка успешно изменена"
+msgstr "Пользователи"
+
+#: labels/views.py:35
+#, fuzzy
+#| msgid "Пользователи"
+msgid "Метка успешно удалена"
+msgstr "Пользователи"
+
 #: task_manager/settings.py:61
 msgid "Russian"
 msgstr "Русский"
@@ -28,7 +91,7 @@ msgstr "Русский"
 msgid "English"
 msgstr "Английский"
 
-#: task_manager/templates/base.html:7 task_manager/templates/base.html:15
+#: task_manager/templates/base.html:8 task_manager/templates/base.html:15
 #: task_manager/templates/index.html:10
 msgid "Менеджер задач"
 msgstr "Менеджер задач"
@@ -37,13 +100,21 @@ msgstr "Менеджер задач"
 msgid "Пользователи"
 msgstr "Пользователи"
 
-#: task_manager/templates/base.html:26 users/templates/users/login.html:6
+#: task_manager/templates/base.html:24
+msgid "Статусы"
+msgstr ""
+
+#: task_manager/templates/base.html:35 task_manager/templates/login.html:6
 msgid "Вход"
 msgstr "Вход"
 
-#: task_manager/templates/base.html:29 users/templates/users/create.html:6
+#: task_manager/templates/base.html:38 users/templates/users/create.html:6
 msgid "Регистрация"
 msgstr "Регистрация"
+
+#: task_manager/templates/base.html:46
+msgid "Выход"
+msgstr ""
 
 #: task_manager/templates/index.html:7
 msgid "Привет от Хекслета!"
@@ -57,16 +128,16 @@ msgstr ""
 msgid "Узнать больше"
 msgstr ""
 
+#: task_manager/templates/login.html:10
+msgid "Войти"
+msgstr ""
+
 #: task_manager/views.py:13
 msgid "Вы залогинены"
 msgstr ""
 
 #: task_manager/views.py:19
 msgid "Вы разлогинены"
-msgstr ""
-
-#: users/forms.py:7
-msgid "Имя"
 msgstr ""
 
 #: users/forms.py:8
@@ -91,32 +162,12 @@ msgstr "Регистрация"
 msgid "Удаление пользователя"
 msgstr "Пользователи"
 
-#: users/templates/users/delete.html:7
-msgid "Вы уверены, что хотите удалить"
-msgstr ""
-
-#: users/templates/users/delete.html:10
-msgid "Да, удалить"
-msgstr ""
-
 #: users/templates/users/index.html:11
 msgid "Полное имя"
 msgstr ""
 
-#: users/templates/users/index.html:12
-msgid "Дата создания"
-msgstr ""
-
-#: users/templates/users/index.html:24 users/templates/users/update.html:10
-msgid "Изменить"
-msgstr ""
-
 #: users/templates/users/index.html:26
-msgid "Удалить"
-msgstr ""
-
-#: users/templates/users/login.html:10
-msgid "Войти"
+msgid "Удалить)"
 msgstr ""
 
 #: users/templates/users/update.html:6

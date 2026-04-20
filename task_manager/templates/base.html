@@ -19,6 +19,11 @@
                 <li class="nav-item">
                     <a href="{% url 'users' %}" class="nav-link text-white">{% translate "Пользователи" %}</a>
                 </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'statuses' %}" class="nav-link text-white">{% translate "Статусы" %}</a>
+                    </li>
+                {% endif %}
             </ul>
             <hr>
             <ul class="nav nav-pills flex-column">

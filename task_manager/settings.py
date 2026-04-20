@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'users',
     'task_manager',
+    'statuses',
 ]
 
 LANGUAGE_CODE = 'ru'
