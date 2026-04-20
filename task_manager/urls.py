@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from task_manager import views
 from task_manager.views import UserLoginView, UserLogoutView, IndexView
+from django.contrib.auth.models import User
+from django.db.utils import OperationalError, ProgrammingError
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,3 +29,13 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('statuses/', include('statuses.urls')),
 ]
+
+try:
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser(
+            username='admin', 
+            email='admin@example.com', 
+            password='your_password_here'
+        )
+except (OperationalError, ProgrammingError):
+    pass
