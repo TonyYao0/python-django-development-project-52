@@ -42,4 +42,4 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
     success_message = _('Пользователь успешно удален')
 
     def test_func(self):
-        return self.get_object() == self.request.user
+        return self.get_object() == self.request.user or self.request.user.is_superuser
