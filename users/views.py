@@ -29,7 +29,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
     success_message = _('Пользователь успешно изменен')
 
     def test_func(self):
-        return self.get_object() == self.request.user
+        return self.get_object() == self.request.user or self.request.user.is_superuser
 
     def handle_no_permission(self):
         messages.error(self.request, _('У вас нет прав для изменения другого пользователя.'))
