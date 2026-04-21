@@ -8,7 +8,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
-from .forms import CustomUserForm
+from .forms import CustomUserForm, UserUpdateForm
 
 class UsersListView(ListView):
     model = User
@@ -23,7 +23,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
 
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = User
-    form_class = CustomUserForm
+    form_class = UserUpdateForm
     template_name = 'users/update.html'
     success_url = reverse_lazy('users')
     success_message = _('Пользователь успешно изменен')

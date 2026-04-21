@@ -11,3 +11,13 @@ class CustomUserForm(UserCreationForm):
         model = User
         fields = ("username", "first_name", "last_name", "password1", "password2")
         labels = {'username': _('Имя пользователя'),}
+
+
+class UserUpdateForm(forms.ModelForm):
+    first_name = forms.CharField(label=_("Имя"), required=True)
+    last_name = forms.CharField(label=_("Фамилия"), required=True)
+
+    class Meta:
+        model = User
+        fields = ("username", "first_name", "last_name")
+        labels = {'username': _('Имя пользователя'),}

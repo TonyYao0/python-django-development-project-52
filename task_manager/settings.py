@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'users',
     'task_manager',
     'statuses',
+    'tasks',
 ]
 
 LANGUAGE_CODE = 'ru'

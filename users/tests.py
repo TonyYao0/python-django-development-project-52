@@ -14,7 +14,8 @@ class UserCrudTastCase(TestCase):
         
         self.new_user_data = {
             'username': 'jane',
-            'password': 'janepassword',
+            'password1': 'janepassword',
+            'password2': 'janepassword',
             'first_name': 'Jane',
             'last_name': 'Doe'
         }

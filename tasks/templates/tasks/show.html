@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1 class="my-4">{{ task.name }}</h1>
+<div class="card p-4">
+    <div class="row">
+        <div class="col">{% translate "Автор" %}</div>
+        <div class="col">{{ task.author.username }}</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">{% translate "Исполнитель" %}</div>
+        <div class="col">{{ task.executor.username|default:"""" }}</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">{% translate "Статус" %}</div>
+        <div class="col">{{ task.status }}</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">{% translate "Дата создания" %}</div>
+        <div class="col">{{ task.created_at|date:"d.m.Y H:i" }}</div>
+    </div>
+    <div class="mt-4">
+        <p>{{ task.description }}</p>
+    </div>
+</div>
+{% endblock %}
