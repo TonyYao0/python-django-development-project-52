@@ -24,7 +24,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = UserUpdateForm
-    template_name = 'users/update.html'
+    template_name = 'users/create.html'
     success_url = reverse_lazy('users')
     success_message = _('Пользователь успешно изменен')
 
@@ -43,3 +43,7 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
     def test_func(self):
         return self.get_object() == self.request.user or self.request.user.is_superuser
+
+    def handle_no_permission(self):
+        messages.error(self.request, _('У вас нет прав для удаления другого пользователя.'))
+        return redirect('users')

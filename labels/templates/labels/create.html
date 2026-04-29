@@ -4,17 +4,17 @@
 
 {% block content %}
 <h1 class="my-4">
+    {# Проверяем наличие pk у объекта, чтобы понять: это создание или редактирование #}
     {% if object.pk %}
-        {% translate "Изменение статуса" %}
+        {% translate "Изменение метки" %}
     {% else %}
-        {% translate "Создать статус" %}
+        {% translate "Создать метку" %}
     {% endif %}
 </h1>
 
 <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-    {# Кнопка тоже меняет текст в зависимости от действия #}
     <button type="submit" class="btn btn-primary">
         {% if object.pk %}
             {% translate "Изменить" %}

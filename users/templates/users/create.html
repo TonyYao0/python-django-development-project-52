@@ -3,10 +3,23 @@
 {% load i18n %}
 
 {% block content %}
-<h1 class="my-4">{% translate "Регистрация" %}</h1>
+<h1 class="my-4">
+    {% if object.pk %}
+        {% translate "Изменение пользователя" %}
+    {% else %}
+        {% translate "Регистрация" %}
+    {% endif %}
+</h1>
+
 <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% bootstrap_button _("Зарегистрировать") button_type="submit" button_class="btn-primary" %}
+    <button type="submit" class="btn btn-primary">
+        {% if object.pk %}
+            {% translate "Изменить" %}
+        {% else %}
+            {% translate "Зарегистрировать" %}
+        {% endif %}
+    </button>
 </form>
-{% endblock %}
+{% endblock %} 

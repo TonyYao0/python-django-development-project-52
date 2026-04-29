@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
+from tasks.models import Task
+from statuses.models import Status
 
 class UserCrudTastCase(TestCase):
     def setUp(self):
@@ -84,3 +86,11 @@ class UserCrudTastCase(TestCase):
         response = self.client.post(url)
         self.assertRedirects(response,  reverse('users'))
         self.assertFalse(User.objects.filter(id=self.user.id).exists())
+
+    def test_delete_other_user(self):
+        other_user = User.objects.create_user(username='other', password='123')
+        self.client.login(username=self.user_data['username'], password=self.user_data['password'])
+        url = reverse('user_delete', kwargs={'pk': other_user.id})
+        response = self.client.post(url)
+        self.assertRedirects(response, reverse('users'))
+        self.assertTrue(User.objects.filter(id=other_user.id).exists())

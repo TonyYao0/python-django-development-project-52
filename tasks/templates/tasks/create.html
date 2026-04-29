@@ -3,10 +3,23 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<h1 class="my-4">{% translate "Создать задачу" %}</h1>
+<h1 class="my-4">
+    {% if object.pk %}
+        {% translate "Изменение задачи" %}
+    {% else %}
+        {% translate "Создать задачу" %}
+    {% endif %}
+</h1>
+
 <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <button type="submit" class="btn btn-primary">{% translate "Создать" %}</button>
+    <button type="submit" class="btn btn-primary">
+        {% if object.pk %}
+            {% translate "Изменить" %}
+        {% else %}
+            {% translate "Создать" %}
+        {% endif %}
+    </button>
 </form>
 {% endblock %}

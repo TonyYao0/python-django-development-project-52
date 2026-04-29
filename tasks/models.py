@@ -27,6 +27,12 @@ class Task(models.Model):
         null=True,
         verbose_name=_('Исполнитель'))
     created_at = models.DateTimeField(auto_now_add=True)
+    labels = models.ManyToManyField(
+        'labels.Label',
+        blank=True,
+        related_name='tasks',
+        verbose_name=_('Метки')
+    )
 
     def __str__(self):
         return self.name

@@ -22,7 +22,7 @@ class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Status
     fields = ['name']
-    template_name = 'statuses/update.html'
+    template_name = 'statuses/create.html'
     success_url = reverse_lazy('statuses')
     success_message = _('Статус успешно изменен')
 

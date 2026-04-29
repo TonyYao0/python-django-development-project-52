@@ -79,7 +79,6 @@ class TaskTest(TestCase):
 
 
     def test_delete_task_non_author(self):
-        # Логинимся под КЕМ-ТО ДРУГИМ (не автором)
         self.client.login(username='jane', password='janepassword')
         url = reverse('task_delete', kwargs={'pk': self.task.id})
         response = self.client.post(url)
