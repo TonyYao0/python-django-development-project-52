@@ -12,6 +12,7 @@ class StatusListView(LoginRequiredMixin, ListView):
     template_name = 'statuses/index.html'
     context_object_name = 'statuses'
 
+
 class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Status
     fields = ['name']
@@ -19,12 +20,14 @@ class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('statuses')
     success_message = _('Статус успешно создан')
 
+
 class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Status
     fields = ['name']
     template_name = 'statuses/create.html'
     success_url = reverse_lazy('statuses')
     success_message = _('Статус успешно изменен')
+
 
 class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Status

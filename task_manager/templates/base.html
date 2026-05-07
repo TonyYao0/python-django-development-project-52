@@ -42,7 +42,6 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <!-- Выход через POST-запрос-->
                         <form action="{% url 'logout' %}" method="post" class="nav-link p-0">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-link text-white text-decoration-none">
@@ -55,7 +54,6 @@
         </div>
 
         <main class="container-fluid p-5 bg-light overflow-auto">
-            <!-- Блок для Flash-сообщений -->
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">

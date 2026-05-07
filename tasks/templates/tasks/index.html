@@ -1,10 +1,20 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load django_bootstrap5 %}
 
 {% block content %}
 <h1 class="my-4">{% translate "Задачи" %}</h1>
 <a class="btn btn-primary mb-3" href="{% url 'task_create' %}">{% translate "Создать задачу" %}</a>
 
+<div class="card mb-3">
+    <div class="card-body bg-light">
+        <form method="get">
+            {% bootstrap_form filter.form %}
+            
+            <input class="btn btn-primary mt-3" type="submit" value="{% translate 'Показать' %}">
+        </form>
+    </div>
+</div>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -24,11 +34,12 @@
             <td>{{ task.id }}</td>
             <td><a href="{% url 'task_show' task.id %}">{{ task.name }}</a></td>
             <td>{{ task.status }}</td>
-            <td>{{ task.author.get_full_name }}</td>
-            <td>{{ task.executor.get_full_name|default:"" }}</td>
+            <td>{{ task.author.username }}</td>
+            <td>{{ task.executor.username|default:"" }}</td>
             <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
-            <td> {% for label in task.labels.all %}
-                    <span class="badge bg-secondary">{{label.name}}</span>
+            <td>
+                {% for label in task.labels.all %}
+                    <span class="badge bg-secondary">{{ label.name }}</span>
                 {% endfor %}
             </td>
             <td>

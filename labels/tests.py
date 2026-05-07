@@ -23,12 +23,14 @@ class LabelTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'labels/index.html')
 
+
     def test_label_create(self):
         response = self.client.get(reverse('label_create'))
         self.assertEqual(response.status_code, 200)
         response = self.client.post(reverse('label_create'), {'name': 'Feature'})
         self.assertRedirects(response, reverse('labels'))
         self.assertTrue(Label.objects.filter(name='Feature').exists())
+
 
     def test_label_update(self):
         response = self.client.get(reverse('label_update', kwargs={'pk': self.label.id}))
@@ -39,6 +41,7 @@ class LabelTest(TestCase):
         self.label.refresh_from_db()
         self.assertEqual(self.label.name, 'Fixed')
 
+
     def test_label_delete(self):
         response = self.client.get(reverse('label_delete', kwargs={'pk': self.label.id}))
         self.assertEqual(response.status_code, 200)
@@ -46,6 +49,7 @@ class LabelTest(TestCase):
         response = self.client.post(url)
         self.assertRedirects(response, reverse('labels'))
         self.assertFalse(Label.objects.filter(name='Bug').exists())
+
 
     def test_label_delete_without_tasks(self):
         self.client.logout()

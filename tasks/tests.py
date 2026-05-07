@@ -5,6 +5,7 @@ from tasks.models import Task
 from statuses.models import Status
 from django.contrib.auth.models import User
 from django.db.models import ProtectedError
+from labels.models import Label
 
 
 class TaskTest(TestCase):
@@ -15,12 +16,10 @@ class TaskTest(TestCase):
             first_name='John',
             last_name='Johns'
         )
-
         self.other_user = User.objects.create_user(
             username='jane',
             password='janepassword'
         )
-
         self.status = Status.objects.create(name='Новый')
 
         self.task = Task.objects.create(
@@ -31,7 +30,7 @@ class TaskTest(TestCase):
         )
 
 
-    def tesr_tasks_access(self):
+    def test_tasks_access(self):
         response = self.client.get(reverse('tasks'))
         self.assertEqual(response.status_code, 302)
         self.client.login(username='john', password='secretpassword')
@@ -50,7 +49,6 @@ class TaskTest(TestCase):
         }
         response = self.client.post(url, data)
         self.assertRedirects(response, reverse('tasks'))
-
         new_task = Task.objects.get(name='New Task')
         self.assertEqual(new_task.author, self.user)
         self.assertEqual(new_task.executor, self.other_user)
@@ -85,6 +83,32 @@ class TaskTest(TestCase):
         self.assertRedirects(response, reverse('tasks'))
         self.assertTrue(Task.objects.filter(id=self.task.id).exists())
 
+
     def test_user_deletion_with_tasks(self):
         with self.assertRaises(ProtectedError):
             self.user.delete()
+
+
+    def test_filter_self_tasks(self):
+        self.client.login(username='john', password='secretpassword')
+        Task.objects.create(
+            name='Чужая задача',
+            status=self.status,
+            author=self.other_user
+        )
+        response = self.client.get(reverse('tasks'))
+        self.assertContains(response, 'Чужая задача')
+        self.assertContains(response, 'Тестовая задача')
+        response = self.client.get(f"{reverse('tasks')}?self_tasks=on")
+        self.assertNotContains(response, 'Чужая задача')
+        self.assertContains(response, 'Тестовая задача')
+
+
+    def test_filter_by_label(self):
+        self.client.login(username='john', password='secretpassword')
+        label = Label.objects.create(name='Bug')
+        self.task.labels.add(label)
+        response = self.client.get(f"{reverse('tasks')}?label={label.id}")
+        self.assertContains(response, 'Тестовая задача')
+        response = self.client.get(f"{reverse('tasks')}?label=999")
+        self.assertNotContains(response, 'Тестовая задача')

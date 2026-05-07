@@ -5,15 +5,19 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
+
 class IndexView(TemplateView):
     template_name = 'index.html'
+
 
 class UserLoginView(SuccessMessageMixin, LoginView):
     template_name = 'login.html'
     success_message = _('Вы залогинены')
 
+
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy('index')
+
 
     def dispatch(self, request, *args, **kwargs):
         messages.info(request, _('Вы разлогинены'))

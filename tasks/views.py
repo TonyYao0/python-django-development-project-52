@@ -7,11 +7,15 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.shortcuts import redirect
+from .filters import TaskFilter
+from django_filters.views import FilterView
 
-class TaskListView(LoginRequiredMixin, ListView):
+
+class TaskListView(LoginRequiredMixin, FilterView):
     model = Task
     template_name = 'tasks/index.html'
     context_object_name = 'tasks'
+    filterset_class = TaskFilter
 
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
