@@ -155,3 +155,17 @@ LOGIN_REDIRECT_URL = 'index'
 
 # Перенаправление, если пользователь не авторизован и пытается зайти на защищенную страницу
 LOGIN_URL = 'login'
+
+ROLLBAR_TOKEN = os.getenv('ROLLBAR_ACCESS_TOKEN')
+
+
+if ROLLBAR_TOKEN:
+    ROLLBAR = {
+        'access_token': ROLLBAR_TOKEN,
+        'environment': 'development' if DEBUG else 'production',
+        'root': BASE_DIR,
+    }
+    if isinstance(MIDDLEWARE, tuple):
+        MIDDLEWARE += ('rollbar.contrib.django.middleware.RollbarNotifierMiddleware',)
+    else:
+        MIDDLEWARE.append('rollbar.contrib.django.middleware.RollbarNotifierMiddleware')

@@ -18,8 +18,17 @@ from django.contrib import admin
 from django.urls import path, include
 from task_manager import views
 from task_manager.views import UserLoginView, UserLogoutView, IndexView
+from django.http import HttpResponse
+
+
+def test_error(request):
+    """Искусственная ошибка для проверки Rollbar."""
+    a = None
+    a.hello()  # Вызовет ошибку AttributeError
+    return HttpResponse("Этот текст не отобразится")
 
 urlpatterns = [
+    path('test-error/', test_error, name='test_error'),
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
     path('login/', UserLoginView.as_view(), name='login'),
