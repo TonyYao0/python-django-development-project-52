@@ -32,7 +32,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
 
     def test_func(self):
-        return self.get_object() == self.request.user or self.request.user.is_superuser
+        return self.get_object() == self.request.user
 
 
     def handle_no_permission(self):
@@ -48,9 +48,9 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
 
     def test_func(self):
-        return self.get_object() == self.request.user or self.request.user.is_superuser
+        return self.get_object() == self.request.user
 
 
     def handle_no_permission(self):
-        messages.error(self.request, _('У вас нет прав для удаления другого пользователя.'))
+        messages.error(self.request, _('У вас нет прав для удаления другого пользователя'))
         return redirect('users')
