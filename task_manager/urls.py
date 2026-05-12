@@ -32,6 +32,7 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
+    path('test-error/', test_error, name='test_error'),
     path('users/', include('users.urls')),
     path('statuses/', include('statuses.urls')),
     path('tasks/', include('tasks.urls')),
