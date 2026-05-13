@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.db.models import ProtectedError
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -36,7 +36,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
 
     def handle_no_permission(self):
-        messages.error(self.request, _('У вас нет прав для изменения другого пользователя.'))
+        messages.error(self.request, _('У вас нет прав для изменения другого пользователя'))
         return redirect('users')
 
 
@@ -52,5 +52,13 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
 
     def handle_no_permission(self):
-        messages.error(self.request, _('У вас нет прав для удаления другого пользователя'))
+        messages.error(self.request, _('У вас нет прав для изменения другого пользователя'))
         return redirect('users')
+
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, _('Невозможно удалить пользователя, потому что он используется'))
+            return redirect('users')
