@@ -18,7 +18,10 @@ class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     fields = ['name']
     template_name = 'statuses/create.html'
     success_url = reverse_lazy('statuses')
-    success_message = _('Статус успешно создан')
+
+
+    def get_success_message(self, cleaned_data):
+        return 'Статус успешно создан'
 
 
 class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -26,11 +29,17 @@ class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     fields = ['name']
     template_name = 'statuses/create.html'
     success_url = reverse_lazy('statuses')
-    success_message = _('Статус успешно изменен')
+
+
+    def get_success_message(self, cleaned_data):
+        return 'Статус успешно изменен'
 
 
 class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Status
     template_name = 'statuses/delete.html'
     success_url = reverse_lazy('statuses')
-    success_message = _('Статус успешно удален')
+
+
+    def get_success_message(self, cleaned_data):
+        return 'Статус успешно удален'

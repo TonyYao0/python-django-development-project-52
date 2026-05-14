@@ -15,9 +15,9 @@
     {% csrf_token %}
     {% bootstrap_form form %}
         {% if object.pk %}
-            <input class="btn btn-primary" type="submit" value="{% translate 'Изменить' %}">
+            <input class="btn btn-primary" type="submit" value="Изменить">
         {% else %}
-            <input class="btn btn-primary" type="submit" value="{% translate 'Зарегистрировать' %}">
+            <input class="btn btn-primary" type="submit" value="Зарегистрировать">
         {% endif %}
 </form>
 {% endblock %} 
