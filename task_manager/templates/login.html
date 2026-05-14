@@ -7,6 +7,6 @@
 <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% bootstrap_button _("Войти") button_type="submit" button_class="btn-primary" %}
+     <input class="btn btn-primary" type="submit" value="{% translate 'Войти' %}">
 </form>
 {% endblock %}

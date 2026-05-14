@@ -8,64 +8,66 @@
     <title>{% translate "Менеджер задач" %}</title>
     {% bootstrap_css %}
 </head>
-<body class="h-100">
-    <div class="d-flex flex-nowrap min-vh-100">
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-            <a href="{% url 'index' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <span class="fs-4">{% translate "Менеджер задач" %}</span>
-            </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="{% url 'users' %}" class="nav-link text-white">{% translate "Пользователи" %}</a>
-                </li>
-                {% if user.is_authenticated %}
+<body class="d-flex flex-column h-100">
+    <!-- Верхняя навигационная панель строго по структуре демо-проекта -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">{% translate "Менеджер задач" %}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a href="{% url 'statuses' %}" class="nav-link text-white">{% translate "Статусы" %}</a>
+                        <a class="nav-link text-white" href="{% url 'users' %}">{% translate "Пользователи" %}</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'labels' %}" class="nav-link text-white">{% translate "Метки" %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'tasks' %}" class="nav-link text-white">{% translate "Задачи" %}</a>
-                    </li>
-                {% endif %}
-            </ul>
-            <hr>
-            <ul class="nav nav-pills flex-column">
-                {% if not user.is_authenticated %}
-                    <li class="nav-item">
-                        <a href="{% url 'login' %}" class="nav-link text-white">{% translate "Вход" %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'user_create' %}" class="nav-link text-white">{% translate "Регистрация" %}</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <form action="{% url 'logout' %}" method="post" class="nav-link p-0">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-link text-white text-decoration-none">
-                                {% translate "Выход" %}
-                            </button>
-                        </form>
-                    </li>
-                {% endif %}
-            </ul>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'statuses' %}">{% translate "Статусы" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'labels' %}">{% translate "Метки" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'tasks' %}">{% translate "Задачи" %}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav">
+                    {% if not user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'login' %}">{% translate "Вход" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'user_create' %}">{% translate "Регистрация" %}</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <form action="{% url 'logout' %}" method="post" class="p-0">
+                                {% csrf_token %}
+                                <input class="btn btn-link nav-link text-white border-0 text-decoration-none" type="submit" value="{% translate 'Выход' %}">
+                            </form>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        <main class="container-fluid p-5 bg-light overflow-auto">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% endfor %}
-            {% endif %}
+    <!-- Основной контент приложения -->
+    <main class="container flex-shrink-0">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
 
-            {% block content %}{% endblock %}
-        </main>
-    </div>
+        {% block content %}{% endblock %}
+    </main>
+
     {% bootstrap_javascript %}
 </body>
 </html>

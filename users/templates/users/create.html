@@ -16,9 +16,9 @@
     {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">
         {% if object.pk %}
-            {% translate "Изменить" %}
+            <input class="btn btn-primary" type="submit" value="{% translate 'Изменить' %}">
         {% else %}
-            {% translate "Зарегистрировать" %}
+            <input class="btn btn-primary" type="submit" value="{% translate 'Зарегистрировать' %}">
         {% endif %}
     </button>
 </form>
