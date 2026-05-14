@@ -14,12 +14,10 @@
 <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <button type="submit" class="btn btn-primary">
         {% if object.pk %}
             <input class="btn btn-primary" type="submit" value="{% translate 'Изменить' %}">
         {% else %}
             <input class="btn btn-primary" type="submit" value="{% translate 'Зарегистрировать' %}">
         {% endif %}
-    </button>
 </form>
 {% endblock %} 
