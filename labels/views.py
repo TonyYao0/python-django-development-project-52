@@ -20,8 +20,6 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     fields = ['name']
     template_name = 'labels/create.html'
     success_url =reverse_lazy('labels')
-
-
     success_message = _('Метка успешно создана')
 
 
@@ -30,8 +28,6 @@ class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     fields = ['name']
     template_name = 'labels/create.html'
     success_url =reverse_lazy('labels')
-
-
     success_message = _('Метка успешно изменена')
 
 
@@ -39,8 +35,6 @@ class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Label
     template_name = 'labels/delete.html'
     success_url =reverse_lazy('labels')
-
-
     success_message = _('Метка успешно удалена')
 
 
