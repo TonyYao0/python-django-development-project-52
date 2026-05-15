@@ -9,7 +9,7 @@ class CustomUserForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ("username", "first_name", "last_name", "password1", "password2")
+        fields = ("username", "first_name", "last_name",)
         labels = {'username': _('Имя пользователя'),}
 
 
