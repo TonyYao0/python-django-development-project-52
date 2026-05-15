@@ -15,6 +15,8 @@ import os
 import dj_database_url
 from dotenv import load_dotenv
 from django.utils.translation import gettext_lazy as _
+import sys
+
 
 load_dotenv()
 
@@ -57,7 +59,7 @@ INSTALLED_APPS = [
     'labels',
 ]
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru'
 
 USE_I18N = True
 USE_TZ = True
@@ -70,7 +72,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    #'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -156,6 +158,7 @@ STORAGES = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 # Перенаправление после входа на главную страницу
 LOGIN_REDIRECT_URL = 'index'
@@ -166,7 +169,7 @@ LOGIN_URL = 'login'
 ROLLBAR_TOKEN = os.getenv('ROLLBAR_ACCESS_TOKEN')
 
 
-if ROLLBAR_TOKEN:
+if ROLLBAR_TOKEN and 'test' not in sys.argv:
     ROLLBAR = {
         'access_token': ROLLBAR_TOKEN,
         'environment': 'development' if DEBUG else 'production',

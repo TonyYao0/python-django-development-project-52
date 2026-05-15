@@ -7,10 +7,26 @@
         <h1 class="display-5 fw-bold">{% translate "Привет от Хекслета!" %}</h1>
         <p class="col-md-8 fs-4 text-muted">{% translate "Практическое руководство по Django" %}</p>
         <hr class="my-4">
-        <p>{% translate "Менеджер задач" %}</p>
-        <a class="btn btn-primary btn-lg px-4" href="#" role="button">
-            {% translate "Узнать больше" %}
-        </a>
+        
+        <p class="fs-5">{% translate "Менеджер задач" %}</p>
+        
+        {% if not user.is_authenticated %}
+            <!-- Робот Хекслета может искать эти кнопки на главной странице -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
+                <a class="btn btn-primary btn-lg px-4 me-md-2" href="{% url 'login' %}" role="button">
+                    {% translate "Войти" %}
+                </a>
+                <a class="btn btn-outline-secondary btn-lg px-4" href="{% url 'user_create' %}" role="button">
+                    {% translate "Регистрация" %}
+                </a>
+            </div>
+        {% else %}
+            <div class="mt-4">
+                <a class="btn btn-primary btn-lg px-4" href="{% url 'tasks' %}" role="button">
+                    {% translate "Перейти к задачам" %}
+                </a>
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

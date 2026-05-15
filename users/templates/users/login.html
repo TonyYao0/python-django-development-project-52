@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1 class="my-4">{% translate "Вход" %}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="id_username" class="form-label">{% translate "Имя пользователя" %}</label>
+        <input type="text" name="username" id="id_username" class="form-control" required autofocus>
+    </div>
+    <div class="mb-3">
+        <label for="id_password" class="form-label">{% translate "Пароль" %}</label>
+        <input type="password" name="password" id="id_password" class="form-control" required>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Войти">
+</form>
+{% endblock %}

@@ -3,6 +3,7 @@
 
 {% block content %}
 <h1 class="my-4">{% translate "Пользователи" %}</h1>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -14,18 +15,18 @@
         </tr>
     </thead>
     <tbody>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.get_full_name }}</td>
-            <td>{{ user.date_joined }}</td>
-            <td>
-                <a href="{% url 'user_update' user.id %}">{% translate "Изменить" %}</a>
-                <br>
-                <a href="{% url 'user_delete' user.id %}">{% translate "Удалить)" %}</a>
-            </td>
-        </tr>
+        {% for u in users %}
+            <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.username }}</td>
+                <td>{{ u.get_full_name }}</td>
+                <td>{{ u.date_joined|date:"d.m.Y H:i" }}</td>
+                <td>
+                    <a href="{% url 'user_update' u.id %}">{% translate "Изменить" %}</a>
+                    <br>
+                    <a href="{% url 'user_delete' u.id %}">{% translate "Удалить" %}</a>
+                </td>
+            </tr>
         {% endfor %}
     </tbody>
 </table>
