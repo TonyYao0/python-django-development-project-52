@@ -22,8 +22,7 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_url =reverse_lazy('labels')
 
 
-    def get_success_message(self, cleaned_data):
-        return 'Метка успешно создана'
+    success_message = _('Метка успешно создана')
 
 
 class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -33,8 +32,7 @@ class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_url =reverse_lazy('labels')
 
 
-    def get_success_message(self, cleaned_data):
-        return'Метка успешно изменена'
+    success_message = _('Метка успешно изменена')
 
 
 class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
@@ -43,12 +41,11 @@ class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     success_url =reverse_lazy('labels')
 
 
-    def get_success_message(self, cleaned_data):
-        return'Метка успешно удалена'
+    success_message = _('Метка успешно удалена')
 
 
     def post(self, request, *args, **kwargs):
         if self.get_object().tasks.exists():
-            messages.error(self.request, 'Невозможно удалить метку, потому что она используется')
+            messages.error(self.request, _('Невозможно удалить метку, потому что она используется'))
             return redirect('labels')
         return super().post(request, *args, **kwargs)

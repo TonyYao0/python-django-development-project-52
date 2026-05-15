@@ -20,7 +20,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     form_class = CustomUserForm
     template_name = 'users/create.html'
     success_url = reverse_lazy('login')
-    success_message = 'Пользователь успешно зарегистрирован'
+    success_message = _('Пользователь успешно зарегистрирован') 
 
 
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
@@ -28,8 +28,8 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
     form_class = UserUpdateForm
     template_name = 'users/create.html'
     success_url = reverse_lazy('users')
-    def get_success_message(self, cleaned_data):
-        return 'Пользователь успешно изменен'
+    success_message = _('Пользователь успешно изменен')
+
 
 
     def test_func(self):
@@ -37,7 +37,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
 
     def handle_no_permission(self):
-        messages.error(self.request, 'У вас нет прав для изменения другого пользователя')
+        messages.error(self.request, _('У вас нет прав для изменения другого пользователя'))
         return redirect('users')
 
 
@@ -47,8 +47,7 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
     success_url = reverse_lazy('users')
 
 
-    def get_success_message(self, cleaned_data):
-        return 'Пользователь успешно удален'
+    success_message = _('Пользователь успешно удален')
 
 
 
@@ -57,7 +56,7 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
 
     def handle_no_permission(self):
-        messages.error(self.request, 'У вас нет прав для изменения другого пользователя')
+        messages.error(self.request, _('У вас нет прав для изменения другого пользователя'))
         return redirect('users')
 
 
@@ -65,5 +64,5 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
         try:
             return super().post(request, *args, **kwargs)
         except ProtectedError:
-            messages.error(request, 'Невозможно удалить пользователя, потому что он используется')
+            messages.error(request, _('Невозможно удалить пользователя, потому что он используется'))
             return redirect('users')
