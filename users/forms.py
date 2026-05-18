@@ -24,7 +24,9 @@ class UserUpdateForm(forms.ModelForm):
     )
 
     password2 = forms.CharField(
-        label=_("Подтверждение пароля"), widget=forms.PasswordInput, required=False
+        label=_("Подтверждение пароля"),
+        widget=forms.PasswordInput,
+        required=False,
     )
 
     class Meta:

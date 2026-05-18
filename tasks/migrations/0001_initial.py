@@ -28,9 +28,14 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "name",
-                    models.CharField(max_length=150, unique=True, verbose_name="Имя"),
+                    models.CharField(
+                        max_length=150, unique=True, verbose_name="Имя"
+                    ),
                 ),
-                ("description", models.TextField(blank=True, verbose_name="Описание")),
+                (
+                    "description",
+                    models.TextField(blank=True, verbose_name="Описание"),
+                ),
                 ("created_at", models.DateTimeField(auto_now_add=True)),
                 (
                     "author",

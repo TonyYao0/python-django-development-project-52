@@ -37,7 +37,8 @@ class UserUpdateView(
 
     def handle_no_permission(self):
         messages.error(
-            self.request, _("У вас нет прав для изменения другого пользователя")
+            self.request,
+            _("У вас нет прав для изменения другого пользователя"),
         )
         return redirect("users")
 
@@ -55,7 +56,8 @@ class UserDeleteView(
 
     def handle_no_permission(self):
         messages.error(
-            self.request, _("У вас нет прав для изменения другого пользователя")
+            self.request,
+            _("У вас нет прав для изменения другого пользователя"),
         )
         return redirect("users")
 
@@ -65,6 +67,8 @@ class UserDeleteView(
         except ProtectedError:
             messages.error(
                 request,
-                _("Невозможно удалить пользователя, потому что он используется"),
+                _(
+                    "Невозможно удалить пользователя, потому что он используется"
+                ),
             )
             return redirect("users")

@@ -28,7 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv(
-    "SECRET_KEY", "django-insecure-7sh#h%%)%t8vu-+2uu0629y#t^&euax3(its@(!6nuohstxr1o"
+    "SECRET_KEY",
+    "django-insecure-7sh#h%%)%t8vu-+2uu0629y#t^&euax3(its@(!6nuohstxr1o",
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -107,7 +108,9 @@ WSGI_APPLICATION = "task_manager.wsgi.application"
 
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
+        default=os.getenv(
+            "DATABASE_URL", f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+        ),
         conn_max_age=600,
     )
 }
@@ -166,6 +169,10 @@ if ROLLBAR_TOKEN and "test" not in sys.argv:
         "root": BASE_DIR,
     }
     if isinstance(MIDDLEWARE, tuple):
-        MIDDLEWARE += ("rollbar.contrib.django.middleware.RollbarNotifierMiddleware",)
+        MIDDLEWARE += (
+            "rollbar.contrib.django.middleware.RollbarNotifierMiddleware",
+        )
     else:
-        MIDDLEWARE.append("rollbar.contrib.django.middleware.RollbarNotifierMiddleware")
+        MIDDLEWARE.append(
+            "rollbar.contrib.django.middleware.RollbarNotifierMiddleware"
+        )

@@ -24,7 +24,9 @@ class StatusTestCase(TestCase):
 
     def test_create_status(self):
         self.client.login(username="john", password="secretpassword")
-        response = self.client.post(reverse("status_create"), {"name": "status1"})
+        response = self.client.post(
+            reverse("status_create"), {"name": "status1"}
+        )
         self.assertRedirects(response, reverse("statuses"))
         self.assertTrue(Status.objects.filter(name="status1").exists())
 

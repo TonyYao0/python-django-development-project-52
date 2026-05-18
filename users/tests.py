@@ -43,7 +43,9 @@ class UserCrudTastCase(TestCase):
             },
         )
         self.assertRedirects(response, reverse("index"))
-        self.assertEqual(int(self.client.session["_auth_user_id"]), self.user.pk)
+        self.assertEqual(
+            int(self.client.session["_auth_user_id"]), self.user.pk
+        )
         logout_url = reverse("logout")
         response = self.client.post(logout_url)
         self.assertRedirects(response, reverse("index"))
@@ -51,7 +53,8 @@ class UserCrudTastCase(TestCase):
 
     def test_update(self):
         self.client.login(
-            username=self.user_data["username"], password=self.user_data["password"]
+            username=self.user_data["username"],
+            password=self.user_data["password"],
         )
         url = reverse("user_update", kwargs={"pk": self.user.id})
         updated_data = {
@@ -69,7 +72,8 @@ class UserCrudTastCase(TestCase):
     def test_update_other_user(self):
         other_user = User.objects.create_user(username="other", password="123")
         self.client.login(
-            username=self.user_data["username"], password=self.user_data["password"]
+            username=self.user_data["username"],
+            password=self.user_data["password"],
         )
         url = reverse("user_update", kwargs={"pk": other_user.id})
         response = self.client.post(url, {"username": "hacker"})
@@ -79,7 +83,8 @@ class UserCrudTastCase(TestCase):
 
     def test_delete_user(self):
         self.client.login(
-            username=self.user_data["username"], password=self.user_data["password"]
+            username=self.user_data["username"],
+            password=self.user_data["password"],
         )
         url = reverse("user_delete", kwargs={"pk": self.user.id})
         response = self.client.post(url)
@@ -89,7 +94,8 @@ class UserCrudTastCase(TestCase):
     def test_delete_other_user(self):
         other_user = User.objects.create_user(username="other", password="123")
         self.client.login(
-            username=self.user_data["username"], password=self.user_data["password"]
+            username=self.user_data["username"],
+            password=self.user_data["password"],
         )
         url = reverse("user_delete", kwargs={"pk": other_user.id})
         response = self.client.post(url)

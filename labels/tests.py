@@ -23,7 +23,9 @@ class LabelTest(TestCase):
     def test_label_create(self):
         response = self.client.get(reverse("label_create"))
         self.assertEqual(response.status_code, 200)
-        response = self.client.post(reverse("label_create"), {"name": "Feature"})
+        response = self.client.post(
+            reverse("label_create"), {"name": "Feature"}
+        )
         self.assertRedirects(response, reverse("labels"))
         self.assertTrue(Label.objects.filter(name="Feature").exists())
 
@@ -58,4 +60,6 @@ class LabelTest(TestCase):
         ]
         for url in urls:
             response = self.client.get(url)
-            self.assertEqual(response.status_code, 302)  # Redirect to login page
+            self.assertEqual(
+                response.status_code, 302
+            )  # Redirect to login page
