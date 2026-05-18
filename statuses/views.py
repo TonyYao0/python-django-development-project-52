@@ -5,6 +5,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext_lazy as _
 from .models import Status
+from django.shortcuts import redirect
+from django.db.models import ProtectedError
+from django.contrib import messages
 
 
 class StatusListView(LoginRequiredMixin, ListView):
@@ -37,7 +40,8 @@ class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     
 
     def post(self, request, *args, **kwargs):
-        if self.get_object().task_set.exists():
-            messages.error(self.request, _('Невозможно удалить статус, потому что он используется'))
-            return redirect('statuses')
-        return super().post(request, *args, **kwargs)
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+             messages.error(self.request, _('Невозможно удалить статус, потому что он используется'))
+             return redirect('statuses')

@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.shortcuts import redirect
 from .models import Label
+from django.db.models import ProtectedError
 
 
 class LabelListView(LoginRequiredMixin, ListView):
@@ -39,7 +40,9 @@ class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
 
     def post(self, request, *args, **kwargs):
-        if self.get_object().tasks.exists():
-            messages.error(self.request, _('Невозможно удалить метку, потому что она используется'))
-            return redirect('labels')
-        return super().post(request, *args, **kwargs)
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+             messages.error(self.request, _('Невозможно удалить метку, потому что она используется'))
+             return redirect('labels')
+       
