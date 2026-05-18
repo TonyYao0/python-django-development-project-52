@@ -14,7 +14,6 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
-from django.utils.translation import gettext_lazy as _
 import sys
 
 
@@ -28,85 +27,87 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-7sh#h%%)%t8vu-+2uu0629y#t^&euax3(its@(!6nuohstxr1o')
+SECRET_KEY = os.getenv(
+    "SECRET_KEY", "django-insecure-7sh#h%%)%t8vu-+2uu0629y#t^&euax3(its@(!6nuohstxr1o"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
-    'webserver',
-    'localhost',
-    '127.0.0.1',
-    '.onrender.com',
+    "webserver",
+    "localhost",
+    "127.0.0.1",
+    ".onrender.com",
 ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django_bootstrap5',
-    'django_filters',
-    'users',
-    'task_manager',
-    'statuses',
-    'tasks',
-    'labels',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django_bootstrap5",
+    "django_filters",
+    "users",
+    "task_manager",
+    "statuses",
+    "tasks",
+    "labels",
 ]
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = "ru"
 
 USE_I18N = True
 USE_TZ = True
 
 LANGUAGES = [
-    ('ru', 'Russian'),
+    ("ru", "Russian"),
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'task_manager.urls'
+ROOT_URLCONF = "task_manager.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'task_manager' / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "task_manager" / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'task_manager.wsgi.application'
+WSGI_APPLICATION = "task_manager.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
+    "default": dj_database_url.config(
+        default=os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
         conn_max_age=600,
     )
 }
@@ -118,13 +119,13 @@ AUTH_PASSWORD_VALIDATORS = []
 
 
 LOCALE_PATHS = [
-    BASE_DIR / 'locale',
+    BASE_DIR / "locale",
 ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 
 USE_TZ = True
@@ -133,10 +134,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 # Хранилище для сжатия статики Whitenoise
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
@@ -146,25 +147,25 @@ STORAGES = {
     },
 }
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 # Перенаправление после входа на главную страницу
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = "index"
 
 # Перенаправление, если пользователь не авторизован и пытается зайти на защищенную страницу
-LOGIN_URL = 'login'
+LOGIN_URL = "login"
 
-ROLLBAR_TOKEN = os.getenv('ROLLBAR_ACCESS_TOKEN')
+ROLLBAR_TOKEN = os.getenv("ROLLBAR_ACCESS_TOKEN")
 
 
-if ROLLBAR_TOKEN and 'test' not in sys.argv:
+if ROLLBAR_TOKEN and "test" not in sys.argv:
     ROLLBAR = {
-        'access_token': ROLLBAR_TOKEN,
-        'environment': 'development' if DEBUG else 'production',
-        'root': BASE_DIR,
+        "access_token": ROLLBAR_TOKEN,
+        "environment": "development" if DEBUG else "production",
+        "root": BASE_DIR,
     }
     if isinstance(MIDDLEWARE, tuple):
-        MIDDLEWARE += ('rollbar.contrib.django.middleware.RollbarNotifierMiddleware',)
+        MIDDLEWARE += ("rollbar.contrib.django.middleware.RollbarNotifierMiddleware",)
     else:
-        MIDDLEWARE.append('rollbar.contrib.django.middleware.RollbarNotifierMiddleware')
+        MIDDLEWARE.append("rollbar.contrib.django.middleware.RollbarNotifierMiddleware")

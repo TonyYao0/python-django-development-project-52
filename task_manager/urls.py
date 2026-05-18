@@ -14,9 +14,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
-from task_manager import views
 from task_manager.views import UserLoginView, UserLogoutView, IndexView
 from django.http import HttpResponse
 
@@ -27,14 +27,15 @@ def test_error(request):
     a.hello()  # Вызовет ошибку AttributeError
     return HttpResponse("Этот текст не отобразится")
 
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', IndexView.as_view(), name='index'),
-    path('login/', UserLoginView.as_view(), name='login'),
-    path('logout/', UserLogoutView.as_view(), name='logout'),
-    path('test-error/', test_error, name='test_error'),
-    path('users/', include('users.urls')),
-    path('statuses/', include('statuses.urls')),
-    path('tasks/', include('tasks.urls')),
-    path('labels/', include('labels.urls'))
+    path("admin/", admin.site.urls),
+    path("", IndexView.as_view(), name="index"),
+    path("login/", UserLoginView.as_view(), name="login"),
+    path("logout/", UserLogoutView.as_view(), name="logout"),
+    path("test-error/", test_error, name="test_error"),
+    path("users/", include("users.urls")),
+    path("statuses/", include("statuses.urls")),
+    path("tasks/", include("tasks.urls")),
+    path("labels/", include("labels.urls")),
 ]
