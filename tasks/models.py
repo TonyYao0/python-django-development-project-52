@@ -25,6 +25,7 @@ class Task(models.Model):
         User, on_delete=models.PROTECT,
         related_name='excepted_tasks',
         null=True,
+        blank=True,
         verbose_name=_('Исполнитель'))
     created_at = models.DateTimeField(auto_now_add=True)
     labels = models.ManyToManyField(

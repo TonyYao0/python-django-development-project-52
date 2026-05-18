@@ -18,6 +18,19 @@ class UserUpdateForm(forms.ModelForm):
     first_name = forms.CharField(label=_("Имя"), required=True)
     last_name = forms.CharField(label=_("Фамилия"), required=True)
 
+
+    password1 = forms.CharField(
+        label=_("Пароль"),
+        widget=forms.PasswordInput,
+        required=False
+        )
+    
+    password2 = forms.CharField(
+        label=_("Подтверждение пароля"),
+        widget=forms.PasswordInput,
+        required=False
+        )
+
     class Meta:
         model = User
         fields = ("username", "first_name", "last_name")
